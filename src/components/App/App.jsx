@@ -36,7 +36,10 @@ export class App extends Component {
     const { good, neutral, bad, total, positivePercentage } = this.state;
     return (
       <>
-        <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
+        <FeedbackOptions
+          onLeaveFeedback={this.onLeaveFeedback}
+          options={{ good, neutral, bad }}
+        />
         <Statistics
           good={good}
           neutral={neutral}

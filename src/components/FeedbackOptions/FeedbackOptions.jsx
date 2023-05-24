@@ -1,11 +1,13 @@
-import { ListBtn } from './FeedbackOptions.styled';
+import { Button, ListBtn } from './FeedbackOptions.styled';
 
-export function FeedbackOptions({ onLeaveFeedback }) {
+export function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
     <ListBtn>
-      <button onClick={onLeaveFeedback}>Good</button>
-      <button onClick={onLeaveFeedback}>Neutral</button>
-      <button onClick={onLeaveFeedback}>Bad</button>
+      {Object.keys(options).map(el => (
+        <Button onClick={onLeaveFeedback} key={el}>
+          {el}
+        </Button>
+      ))}
     </ListBtn>
   );
 }

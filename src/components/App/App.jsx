@@ -7,33 +7,26 @@ export class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0,
-    positivePercentage: 0,
   };
 
   onLeaveFeedback = e => {
     let el = e.target.textContent.toLowerCase();
     this.setState(prevState => ({ [el]: prevState[el] + 1 }));
-    this.counterTotal();
-    this.counterPositivePercentage();
+  };
+
+  counterPositivePercentage = () => {
+    return Math.ceil(
+      (this.state.good /
+        (this.state.good + this.state.neutral + this.state.bad)) *
+        100
+    );
   };
   counterTotal = () => {
-    this.setState(prevState => ({
-      total: prevState.good + prevState.neutral + prevState.bad,
-    }));
-  };
-  counterPositivePercentage = () => {
-    this.setState(prevState => ({
-      positivePercentage: Math.ceil(
-        (prevState.good /
-          (prevState.good + prevState.neutral + prevState.bad)) *
-          100
-      ),
-    }));
+    return this.state.good + this.state.neutral + this.state.bad;
   };
 
   render() {
-    const { good, neutral, bad, total, positivePercentage } = this.state;
+    const { good, neutral, bad } = this.state;
     return (
       <>
         <FeedbackOptions
@@ -44,8 +37,8 @@ export class App extends Component {
           good={good}
           neutral={neutral}
           bad={bad}
-          total={total}
-          positivePercentage={positivePercentage}
+          total={this.counterTotal}
+          positivePercentage={this.counterPositivePercentage}
         />
       </>
     );

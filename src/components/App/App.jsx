@@ -37,8 +37,8 @@ export class App extends Component {
           good={good}
           neutral={neutral}
           bad={bad}
-          total={this.counterTotal}
-          positivePercentage={this.counterPositivePercentage}
+          total={this.counterTotal()}
+          positivePercentage={this.counterPositivePercentage()}
         />
       </>
     );
